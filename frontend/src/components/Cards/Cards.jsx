@@ -3,9 +3,16 @@ import Card from './CardUI'
 import squats from '../assets/squats.jpg';
 import yoga from '../assets/yoga.jpg';
 import crunches from '../assets/crunches.jpg';
+import axios from 'axios';
+
+
+
 
 class Cards extends Component{
+
+
     render(){
+
         return(
             
             <div className="container-fluid d-flex justify-content-center">

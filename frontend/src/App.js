@@ -6,14 +6,14 @@ import EditTodo from "./components/EditTodo"
 import TodoList from "./components/TodoList"
 import axios from 'axios'
 import Navbar from './components/NavBar'
-import Landing from './components/Landing'
+import LandingPage from './components/Landing'
 import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
 import Cards from './components/Cards/Cards'
 import Workouts from "./components/Workouts"
 
-//wowwow
+//wowwowxx
 
 import './components/style.css';
 import './App.css';
@@ -42,7 +42,7 @@ function App() {
             <Route path="/" exact component={TodoList} />
             <Route path="/edit/:id" component={EditTodo} />
             <Route path="/create" component={CreateTodo} />
-    
+            <Route path="/getTodos" component={LandingPage} />
   
         </div>
     

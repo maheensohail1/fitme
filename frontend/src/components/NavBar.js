@@ -42,6 +42,11 @@ class Landing extends Component {
                         Create Task
                     </a>
                 </li>
+                <li className="nav-item">
+                    <a href="/getTodos" className="nav-link">
+                        All Workouts
+                    </a>
+                </li>
             </ul>
         )
         

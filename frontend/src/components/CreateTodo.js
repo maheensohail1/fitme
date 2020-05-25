@@ -1,7 +1,12 @@
 import React, {Component} from "react"
+import {useState} from "react"
 import axios from 'axios';
+import FileUpload from '../../src/components/utils/FileUpload'
 
 class CreateTodo extends Component{
+   
+    
+   
     constructor(props){
         super(props);
 
@@ -9,15 +14,18 @@ class CreateTodo extends Component{
         this.onChangeTodoResp = this.onChangeTodoResp.bind(this);
         this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+       
         this.state={
             session_title: '',
             todo_responsible: '',
             todo_priority: '',
             todo_completed: false,
-
+            images: []
         }
 
     }
+    
+    
 
     onChangeSessionTitle(e){
 
@@ -57,7 +65,8 @@ class CreateTodo extends Component{
             session_title: this.state.session_title,
             todo_responsible: this.state.todo_responsible,
             todo_priority: this.state.todo_priority,
-            todo_completed: this.state.todo_completed
+            todo_completed: this.state.todo_completed,
+            images: this.state.images
         }
 
         axios.post('http://localhost:4000/todos/add', newTodo)
@@ -68,16 +77,26 @@ class CreateTodo extends Component{
             todo_responsible: '',
             todo_priority: '',
             todo_completed: false,
-
+            images:[]
         })
 
+
     }
+     updateImages = (newImages) =>{
+         console.log(newImages)
+        this.setState({images: newImages})
+    }
+    
     render(){
+        
+        
+        
         return(
             <div style ={{marginTop: 20}}>
                 <h3>Create new Session</h3>
                 <form onSubmit= {this.onSubmit}>
                     <div className= "form-group">
+                        <FileUpload refreshFunction={this.updateImages} />
                         <label>Title: </label>
                         <input type="text"
                                className="form-control"
