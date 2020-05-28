@@ -37,14 +37,15 @@ class Landing extends Component {
                         Register
           </a>
                 </li>
-                <li className="nav-item">
-                    <a href="/create" className="nav-link">
-                        Create Task
-                    </a>
-                </li>
+                
                 <li className="nav-item">
                     <a href="/getTodos" className="nav-link">
                         All Workouts
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a href="/getDPs" className="nav-link">
+                        Diet Plans
                     </a>
                 </li>
             </ul>
@@ -52,20 +53,34 @@ class Landing extends Component {
         
         const userLink = (
             <ul className="navbar-nav">
+                 <li className="nav-item">
+                <a href="/" className="navbar-brand" style={mystyle}>FITME</a>
+                </li>
                 <li className="nav-item">
-                    <Link to="/profile" className="nav-link">
+                    <a href="/profile" className="nav-link" >
                         User
-          </Link>
+                    </a>
                 </li>
                 <li className="nav-item">
-                    <Link to="/" className="nav-link">
-                        Home
-                    </Link>
+                    <a href="/getTodos" className="nav-link">
+                        All Workouts
+                    </a>
                 </li>
                 <li className="nav-item">
-                    <Link to="/create" className="nav-link">
-                        Create Task
-                    </Link>
+                    <a href="/getDPs" className="nav-link">
+                        Diet Plans
+                    </a>
+                </li>
+
+                <li className="nav-item">
+                    <a href="/create" className="nav-link">
+                        Create Session
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a href="/createDP" className="nav-link">
+                        Create A DietPlan
+                    </a>
                 </li>
 
                 <li className="nav-item">
@@ -73,9 +88,7 @@ class Landing extends Component {
                         Logout
           </a>
                 </li>
-                <li className="nav-item">
-                <Link to="/" className="navbar-brand" style={mystyle}>FITME</Link>
-                </li>
+               
             </ul>
         )
        

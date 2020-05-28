@@ -49,7 +49,7 @@ function FileUpload(props) {
                         {...getRootProps()}
                         >
                             <input {...getInputProps()} />
-                            <h4>click to add</h4>
+                            <h4>click to add image</h4>
 
 
                     </div>
