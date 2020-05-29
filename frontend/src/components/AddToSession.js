@@ -51,8 +51,10 @@ class AddToSession extends Component{
             images: this.state.images
         }
 
+
        // axios.post(`http://localhost:4000/todos/todos_by_id?id=${todoId}/addWorkout`, newWorkout)
            // .then(res => console.log(res.data));
+
 
         this.setState({
             title: '',

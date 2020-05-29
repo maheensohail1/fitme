@@ -11,12 +11,15 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
 import Cards from './components/Cards/Cards'
-import Workouts from "./components/Workouts"
+import CreateDP from './components/CreateDP'
+import DPPage from './components/DPPage'
 
 //wowwowxx
 
 import './components/style.css';
 import './App.css';
+import AddToSession from './components/AddToSession';
+import InsideTodo from './components/InsideTodo';
 
 function App() {
 
@@ -35,7 +38,7 @@ function App() {
           <Navbar />
           </nav>
           
-          <Route exact path="/workouts" component={Workouts} />
+            <Route path="/createDP" component={CreateDP} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profile" component={Profile} />
@@ -43,6 +46,9 @@ function App() {
             <Route path="/edit/:id" component={EditTodo} />
             <Route path="/create" component={CreateTodo} />
             <Route path="/getTodos" component={LandingPage} />
+            <Route path="/getDPs" component={DPPage} />
+            <Route path="/todo/:todoId" component={InsideTodo} />
+            <Route path="/addtosession" component={AddToSession} />
   
         </div>
     
