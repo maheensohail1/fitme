@@ -3,13 +3,22 @@ import axios from 'axios';
 import Card2 from './Cards/Card2';
 
 
-
+const L = props => (
+    <div className="container-fluid d-flex justify-content-center">
+    <div className="row">
+        <div className="col-md-4">
+        <Card2 desc={props.l.link} title={props.title}/>
+        <br />
+        
+        </div>       
+    </div>
+</div>       
+)
 
 class TodoDetails extends Component{
 
     constructor(props){ 
         super(props);
-
         this.state= {
             session_title : '',
             todo_responsible : '',
@@ -36,71 +45,31 @@ class TodoDetails extends Component{
         })
     }
 
-    /*renderCards= this.state.links.map((link, index) => {
-        return (
-            <div className="container-fluid d-flex justify-content-center">
-            <div className="row">
-                <div className="col-md-4">
-                   <Card2 desc={link}/>
-                </div>
-                
-                
-            </div>
-        </div>
-        
-       
-    )
-    })*/
+    linkList(){
+        const t= this.state.session_title
+        return this.state.links.map(function(currentLink, i){
+            return <L l = {currentLink} title={t} key = {i} />
+        });
+    }
 
+   
     render(){
         return(
             <div>
+               
+                        <h3>Showing All videos for :{this.state.session_title} </h3>
+           
               {this.state.links.length === 0?
                 <div style={{ display:'flex', height:'300px', justifyContent: 'center', alignItems:'center'}}>
-                    <h2>No posts yet</h2>
+                    <h2>No videos in this session yet</h2>
                 </div>:
                 <div>
-                    
-                        
-              {this.state.links.map((link, index) => {
-        return (
-           
-                   <h2>{link}</h2>
-               
-        
-       
-    )
-    })}
+               {this.linkList()}
+          
 
-                    
                 </div>
              }
-               <form onSubmit= {this.onSubmit}>
-                    <div className="form-group">
-                        <label>Title: </label>
-                        <input type= "text"
-                                className="form-control"
-                                value={this.state.session_title}
-                            
-                                />
-
-
-                    </div>
-                    <div className="form-group">
-                        <label>Responsible: </label>
-                        <input type= "text"
-                                className="form-control"
-                                value={this.state.todo_responsible}
-                               
-                                />
-
-
-                    </div>
-
-                   
-                   
-
-                    </form>
+               
             </div>
         )
     }

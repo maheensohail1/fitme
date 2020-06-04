@@ -28,6 +28,7 @@ function LandingPage(){
     <div className="row">
         <div className="col-md-4">
             <Card todoId={todo._id} images={todo.images} title={todo.session_title} desc={todo.todo_responsible}/>
+            <br />
         </div>
         
         
@@ -53,6 +54,8 @@ function LandingPage(){
          <div style={{ width: '75%', margin:'3rem auto'}}>
              <div style={{ textAlign:'center'}}>
                  <h2> All Workouts </h2>
+                 <br />
+                 <br />
              </div>
 
              {Todos.length === 0?

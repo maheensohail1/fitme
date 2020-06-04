@@ -23,11 +23,6 @@ class Landing extends Component {
                 <a href="/" className="navbar-brand" style={mystyle}>FITME</a>
                 </li>
                 <li className="nav-item">
-                <a href="/workouts" className="nav-link">
-                        workouts
-            </a>
-                </li>
-                <li className="nav-item">
                 <a href="/login" className="nav-link">
                         Login
             </a>

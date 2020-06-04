@@ -8,7 +8,7 @@ const Card = props =>{
            <div className="overflow">
            
                <a href={"/details/"+props.todoId}><ImageSlider images={props.images} className="card-img-top"/></a>
-    </div>
+            </div>
            <div className="card-body text-dark">
                <h4 className="card-title">{props.title} </h4>
                <p className="card-text text-secondary">
