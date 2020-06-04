@@ -2,13 +2,9 @@ import React from 'react';
 import ImageSlider from '../utils/imageSlider';
 import './card-style.css';
 
-const Card = props =>{
+const Card2 = props =>{
     return(
        <div className="card text-center">
-           <div className="overflow">
-           
-               <a href={"/details/"+props.todoId}><ImageSlider images={props.images} className="card-img-top"/></a>
-    </div>
            <div className="card-body text-dark">
                <h4 className="card-title">{props.title} </h4>
                <p className="card-text text-secondary">
@@ -21,4 +17,4 @@ const Card = props =>{
     )
 }
 
-export default Card;
+export default Card2;

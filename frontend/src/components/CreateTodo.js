@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import {useState} from "react"
 import axios from 'axios';
 import FileUpload from '../../src/components/utils/FileUpload'
+import LinkUpload from "./utils/LinkUpload";
 
 class CreateTodo extends Component{
    
@@ -20,7 +21,8 @@ class CreateTodo extends Component{
             todo_responsible: '',
             todo_priority: '',
             todo_completed: false,
-            images: []
+            images: [],
+            links:[]
         }
 
     }
@@ -66,7 +68,8 @@ class CreateTodo extends Component{
             todo_responsible: this.state.todo_responsible,
             todo_priority: this.state.todo_priority,
             todo_completed: this.state.todo_completed,
-            images: this.state.images
+            images: this.state.images,
+            links: this.state.links
         }
 
         axios.post('http://localhost:4000/todos/add', newTodo)
@@ -77,7 +80,8 @@ class CreateTodo extends Component{
             todo_responsible: '',
             todo_priority: '',
             todo_completed: false,
-            images:[]
+            images:[],
+            links: []
         })
 
 
@@ -86,6 +90,10 @@ class CreateTodo extends Component{
          console.log(newImages)
         this.setState({images: newImages})
     }
+    updateLinks = (newLinks) =>{
+        console.log(newLinks)
+       this.setState({links: newLinks})
+   }
     
     render(){
         
@@ -113,8 +121,13 @@ class CreateTodo extends Component{
                                onChange= {this.onChangeTodoResp}
                                />
                                
-                    </div>
+                    </div>                
                    
+                    <div className="form-group">
+                        <label>Add links-to-workouts for this session: </label>
+                        <LinkUpload refreshFunction={this.updateLinks}  />
+                    </div>
+
                     <div className="form-group">
                     <label>Intensity: </label>
                     <br />
