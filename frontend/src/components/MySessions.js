@@ -1,17 +1,19 @@
 import React, { Component, useEffect, useState} from 'react'
 import Axios from 'axios'
+import jwt_decode from 'jwt-decode'
 import {Icon, Col, Row} from 'antd'
 import Meta from 'antd/lib/card/Meta'
-import Card from './Cards/CardUI'
+import MyCard from './Cards/MyCard'
 import ImageSlider from '../../src/components/utils/imageSlider';
-
-function LandingPage(){
+function MySessions(){
     
     const [Todos, setTodos] = useState([])
 
+    const token = localStorage.usertoken
+    const decoded = jwt_decode(token)
 
     useEffect(() => {
-        Axios.post('http://localhost:4000/todos/getTodos')
+        Axios.post('http://localhost:4000/todos/getMySessions/' + decoded._id)
             .then(response => {
                 if(response.data.success){
                     setTodos(response.data.todos)
@@ -27,7 +29,7 @@ function LandingPage(){
         return (<div className="container-fluid d-flex justify-content-center">
     <div className="row">
         <div className="col-md-4">
-            <Card todoId={todo._id} images={todo.images} title={todo.session_title} desc={todo.todo_responsible}/>
+            <MyCard todoId={todo._id} images={todo.images} title={todo.session_title} desc={todo.todo_responsible}/>
             <br />
         </div>
         
@@ -43,7 +45,7 @@ function LandingPage(){
         return (
          <div style={{ width: '75%', margin:'3rem auto'}}>
              <div style={{ textAlign:'center'}}>
-                 <h2> All Workouts </h2>
+                 <h2> My Sessions </h2>
                  <br />
                  <br />
              </div>
@@ -58,10 +60,11 @@ function LandingPage(){
                 </div>
              }
 
+        
 
          </div>
         )
     
 }
 
-export default LandingPage
+export default MySessions

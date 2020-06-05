@@ -6,6 +6,7 @@ class Profile extends Component {
     constructor() {
         super()
         this.state = {
+            uid:'',
             first_name: '',
             last_name: '',
             email: '',
@@ -17,6 +18,7 @@ class Profile extends Component {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
         this.setState({
+            uid: decoded._id,
             first_name: decoded.first_name,
             last_name: decoded.last_name,
             email: decoded.email
@@ -30,8 +32,13 @@ class Profile extends Component {
                     <div className="col-sm-8 mx-auto">
                         <h1 className="text-center">PROFILE</h1>
                     </div>
+                    <a href={"/usersessions/"+this.state.uid} className="btn btn-outline-success">My Sessions</a>
                     <table className="table col-md-6 mx-auto">
                         <tbody>
+                        <tr>
+                                <td>User ID</td>
+                                <td>{this.state.uid}</td>
+                            </tr>
                             <tr>
                                 <td>First Name</td>
                                 <td>{this.state.first_name}</td>

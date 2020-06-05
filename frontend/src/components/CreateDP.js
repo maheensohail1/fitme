@@ -13,12 +13,16 @@ class CreateDP extends Component{
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangeSLevel = this.onChangeSLevel.bind(this);
+        this.onChangeWhatToEat= this.onChangeWhatToEat.bind(this);
+        this.onChangeWhatToAvoid= this.onChangeWhatToAvoid.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
        
         this.state={
             name: '',
             duration: '',
             slevel: '',
+            whattoeat:'',
+            whattoavoid:'',
             images: []
         }
 
@@ -51,6 +55,22 @@ class CreateDP extends Component{
 
     }
 
+    onChangeWhatToEat(e){
+
+        this.setState({
+            whattoeat: e.target.value
+        });
+
+    }
+
+    onChangeWhatToAvoid(e){
+
+        this.setState({
+            whattoavoid: e.target.value
+        });
+
+    }
+
     onSubmit(e){
         e.preventDefault();
 
@@ -64,6 +84,8 @@ class CreateDP extends Component{
             name: this.state.name,
             duration: this.state.duration,
             slevel: this.state.slevel,
+            whattoeat:this.state.whattoeat,
+            whattoavoid:this.state.whattoavoid,
             images: this.state.images
         }
 
@@ -74,6 +96,8 @@ class CreateDP extends Component{
             name: '',
             duration: '',
             slevel: '',
+            whattoeat:'',
+            whattoavoid:'',
             images:[]
         })
 
@@ -90,8 +114,12 @@ class CreateDP extends Component{
         
         return(
             <div style ={{marginTop: 20}}>
-                <h3>Create a new Diet Plan</h3>
-                <form onSubmit= {this.onSubmit}>
+                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
+                <div class="w3-container w3-teal">
+                    <h2>Create a new Diet Plan</h2>
+                </div>
+                
+                <form  class="w3-container" onSubmit= {this.onSubmit}>
                     <div className= "form-group">
                         <FileUpload refreshFunction={this.updateImages} />
                         <label>Name: </label>
@@ -108,6 +136,24 @@ class CreateDP extends Component{
                                className="form-control"
                                value={this.state.duration}
                                onChange= {this.onChangeDuration}
+                               />
+                               
+                    </div>
+                    <div className= "form-group">
+                        <label>What To Eat: </label>
+                        <textarea type="text"
+                               className="form-control"
+                               value={this.state.whattoeat}
+                               onChange= {this.onChangeWhatToEat}
+                               />
+                               
+                    </div>
+                    <div className= "form-group">
+                        <label>What To Avoid: </label>
+                        <textarea type="text"
+                               className="form-control"
+                               value={this.state.whattoavoid}
+                               onChange= {this.onChangeWhatToAvoid}
                                />
                                
                     </div>
@@ -153,7 +199,7 @@ class CreateDP extends Component{
                         </div>
                         <div className="form-group">
                             <br />
-                            <input type="submit" value="Create Plan" className="btn btn-primary"/>
+                            <input type="submit" value="Create Plan" className="w3-btn w3-teal"/>
                         </div>
                     </div>
                 </form>

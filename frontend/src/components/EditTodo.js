@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import axios from 'axios';
-
+import FileUpload from '../../src/components/utils/FileUpload'
+import LinkUpload from "./utils/LinkUpload";
 
 class EditTodo extends Component{
 
@@ -17,7 +18,9 @@ class EditTodo extends Component{
             session_title : '',
             todo_responsible : '',
             todo_priority : '',
-            todo_completed : false
+            todo_completed : false,
+            images: [],
+            links:[]
         }
     }
 
@@ -28,8 +31,9 @@ class EditTodo extends Component{
                 session_title: response.data.session_title,
                 todo_responsible: response.data.todo_responsible,
                 todo_priority: response.data.todo_priority,
-                todo_completed: response.data.todo_completed
-
+                todo_completed: response.data.todo_completed,
+                images: response.data.images,
+                links: response.data.links
             })
         })
         .catch(function(error){
@@ -65,13 +69,24 @@ class EditTodo extends Component{
             session_title: this.state.session_title,
             todo_responsible: this.state.todo_responsible,
             todo_priority: this.state.todo_priority,
-            todo_completed: this.state.todo_completed
+            todo_completed: this.state.todo_completed,
+            images: this.state.images,
+            links: this.state.links
+
         };
         axios.post('http://localhost:4000/todos/update/'+ this.props.match.params.id, obj)
             .then(res => console.log(res.data));
 
             this.props.history.push('/');
     }
+    updateImages = (newImages) =>{
+        console.log(newImages)
+       this.setState({images: newImages})
+   }
+   updateLinks = (newLinks) =>{
+       console.log(newLinks)
+      this.setState({links: newLinks})
+  }
 
     render(){
         return(
@@ -79,6 +94,7 @@ class EditTodo extends Component{
                <h3>Update Todo</h3>
                <form onSubmit= {this.onSubmit}>
                     <div className="form-group">
+                    <FileUpload refreshFunction={this.updateImages} />
                         <label>Title: </label>
                         <input type= "text"
                                 className="form-control"
@@ -97,6 +113,10 @@ class EditTodo extends Component{
                                 />
 
 
+                    </div>
+                    <div className="form-group">
+                        <label>Add links-to-workouts for this session: </label>
+                        <LinkUpload refreshFunction={this.updateLinks}  />
                     </div>
 
                     <div className="form-group">

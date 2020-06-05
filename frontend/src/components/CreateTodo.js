@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import {useState} from "react"
+import jwt_decode from 'jwt-decode'
 import axios from 'axios';
 import FileUpload from '../../src/components/utils/FileUpload'
 import LinkUpload from "./utils/LinkUpload";
@@ -17,6 +18,7 @@ class CreateTodo extends Component{
         this.onSubmit = this.onSubmit.bind(this);
        
         this.state={
+            uid:'',
             session_title: '',
             todo_responsible: '',
             todo_priority: '',
@@ -63,7 +65,11 @@ class CreateTodo extends Component{
         console.log(`Todo priority: ${this.state.todo_priority}`);
         console.log(`Todo completed: ${this.state.todo_completed}`);
 
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
+
         const newTodo = {
+            uid: decoded._id,
             session_title: this.state.session_title,
             todo_responsible: this.state.todo_responsible,
             todo_priority: this.state.todo_priority,
@@ -101,7 +107,11 @@ class CreateTodo extends Component{
         
         return(
             <div style ={{marginTop: 20}}>
-                <h3>Create new Session</h3>
+                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
+                <div class="w3-container w3-teal">
+                    <h2>Create a new Session</h2>
+                </div>
+                
                 <form onSubmit= {this.onSubmit}>
                     <div className= "form-group">
                         <FileUpload refreshFunction={this.updateImages} />
@@ -167,8 +177,10 @@ class CreateTodo extends Component{
                             <label className="form-check-label">High</label>
 
                         </div>
+                        
                         <div className="form-group">
-                            <input type="submit" value="Create Session" className="btn btn-primary"/>
+                        <br />
+                            <input type="submit" value="Create Session" className="btn w3-teal"/>
                         </div>
                     </div>
                 </form>

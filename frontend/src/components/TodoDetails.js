@@ -56,12 +56,12 @@ class TodoDetails extends Component{
     render(){
         return(
             <div>
-               
-                        <h3>Showing All videos for :{this.state.session_title} </h3>
+               <br />
+                        <p>Showing All videos for :{this.state.session_title} </p>
            
               {this.state.links.length === 0?
                 <div style={{ display:'flex', height:'300px', justifyContent: 'center', alignItems:'center'}}>
-                    <h2>No videos in this session yet</h2>
+                    <h2>No content in this session yet</h2>
                 </div>:
                 <div>
                {this.linkList()}
