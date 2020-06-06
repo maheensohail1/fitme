@@ -15,10 +15,12 @@ class CreateDP extends Component{
         this.onChangeSLevel = this.onChangeSLevel.bind(this);
         this.onChangeWhatToEat= this.onChangeWhatToEat.bind(this);
         this.onChangeWhatToAvoid= this.onChangeWhatToAvoid.bind(this);
+        this.onChangeAbout=this.onChangeAbout.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
        
         this.state={
             name: '',
+            about:'',
             duration: '',
             slevel: '',
             whattoeat:'',
@@ -63,6 +65,14 @@ class CreateDP extends Component{
 
     }
 
+    onChangeAbout(e){
+
+        this.setState({
+            about: e.target.value
+        });
+
+    }
+
     onChangeWhatToAvoid(e){
 
         this.setState({
@@ -83,6 +93,7 @@ class CreateDP extends Component{
         const newDP = {
             name: this.state.name,
             duration: this.state.duration,
+            about: this.state.about,
             slevel: this.state.slevel,
             whattoeat:this.state.whattoeat,
             whattoavoid:this.state.whattoavoid,
@@ -94,6 +105,7 @@ class CreateDP extends Component{
 
         this.setState({
             name: '',
+            about: '',
             duration: '',
             slevel: '',
             whattoeat:'',
@@ -127,6 +139,15 @@ class CreateDP extends Component{
                                className="form-control"
                                value={this.state.name}
                                onChange= {this.onChangeName}
+                               />
+                               
+                    </div>
+                    <div className= "form-group">
+                        <label>About: </label>
+                        <textarea type="text"
+                               className="form-control"
+                               value={this.state.about}
+                               onChange= {this.onChangeAbout}
                                />
                                
                     </div>
