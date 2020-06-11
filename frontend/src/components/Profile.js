@@ -33,6 +33,7 @@ class Profile extends Component {
                         <h1 className="text-center">PROFILE</h1>
                     </div>
                     <a href={"/usersessions/"+this.state.uid} className="btn btn-outline-success">My Sessions</a>
+                    <a href={"/userdps/"+this.state.uid} className="btn btn-outline-success">My Diet Plans</a>
                     <table className="table col-md-6 mx-auto">
                         <tbody>
                         <tr>

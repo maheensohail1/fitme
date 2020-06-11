@@ -1,13 +1,10 @@
 import React, {Component} from "react"
-import {useState} from "react"
-import jwt_decode from 'jwt-decode'
 import axios from 'axios';
 import FileUpload from '../../src/components/utils/FileUpload'
 
-class CreateDP extends Component{
-   
-    
-   
+
+class EditDP extends Component{
+
     constructor(props){
         super(props);
 
@@ -18,9 +15,8 @@ class CreateDP extends Component{
         this.onChangeWhatToAvoid= this.onChangeWhatToAvoid.bind(this);
         this.onChangeAbout=this.onChangeAbout.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-       
+
         this.state={
-            uid:'',
             name: '',
             about:'',
             duration: '',
@@ -29,10 +25,25 @@ class CreateDP extends Component{
             whattoavoid:'',
             images: []
         }
-
     }
-    
-    
+
+    componentDidMount(){
+        axios.get('http://localhost:4000/DP/'+this.props.match.params.id)
+        .then(response => {
+            this.setState({
+                name: response.data.name,
+                about: response.data.about,
+                duration: response.data.duration,
+                slevel: response.data.slevel,
+                images: response.data.images,
+                whattoeat: response.data.whattoeat,
+                whattoavoid: response.data.whattoavoid
+            })
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+    }
 
     onChangeName(e){
 
@@ -83,19 +94,10 @@ class CreateDP extends Component{
 
     }
 
+    
     onSubmit(e){
         e.preventDefault();
-
-        console.log(`Form Submitted:`);
-        console.log(`Name: ${this.state.name}`);
-        console.log(`Duration: ${this.state.duration}`);
-        console.log(`Strictness Level: ${this.state.slevel}`);
-        
-        const token = localStorage.usertoken
-        const decoded = jwt_decode(token)
-
-        const newDP = {
-            uid: decoded._id,
+        const obj = {
             name: this.state.name,
             duration: this.state.duration,
             about: this.state.about,
@@ -104,39 +106,22 @@ class CreateDP extends Component{
             whattoavoid:this.state.whattoavoid,
             images: this.state.images
         }
-
-        axios.post('http://localhost:4000/DP/add', newDP)
+        axios.post('http://localhost:4000/DP/update/'+ this.props.match.params.id, obj)
             .then(res => console.log(res.data));
 
-        this.setState({
-            name: '',
-            about: '',
-            duration: '',
-            slevel: '',
-            whattoeat:'',
-            whattoavoid:'',
-            images:[]
-        })
-
-
+            this.props.history.push('/');
     }
-     updateImages = (newImages) =>{
-         console.log(newImages)
-        this.setState({images: newImages})
-    }
-    
+    updateImages = (newImages) =>{
+        console.log(newImages)
+       this.setState({images: newImages})
+   }
+  
+
     render(){
-        
-        
-        
         return(
-            <div style ={{marginTop: 20}}>
-                <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
-                <div class="w3-container w3-teal">
-                    <h2>Create a new Diet Plan</h2>
-                </div>
-                
-                <form  class="w3-container" onSubmit= {this.onSubmit}>
+            <div>
+               <h3>Update Diet Plan</h3>
+               <form  class="w3-container" onSubmit= {this.onSubmit}>
                     <div className= "form-group">
                         <FileUpload refreshFunction={this.updateImages} />
                         <label>Name: </label>
@@ -225,14 +210,13 @@ class CreateDP extends Component{
                         </div>
                         <div className="form-group">
                             <br />
-                            <input type="submit" value="Create Plan" className="w3-btn w3-teal"/>
+                            <input type="submit" value="Update Plan" className="w3-btn w3-teal"/>
                         </div>
                     </div>
                 </form>
-               
             </div>
         )
     }
 }
 
-export default CreateDP
+export default EditDP

@@ -22,6 +22,8 @@ import './App.css';
 import TodoDetails from './components/TodoDetails';
 import DPDetails from './components/DPDetails';
 import MySessions from './components/MySessions';
+import MyDPs from './components/MyDPs';
+import EditDP from './components/EditDP';
 
 function App() {
 
@@ -46,9 +48,11 @@ function App() {
             <Route exact path="/profile" component={Profile} />
             <Route path="/" exact component={TodoList} />
             <Route path="/edit/:id" component={EditTodo} />
+            <Route path="/editDP/:id" component={EditDP} />
             <Route path="/details/:id" component={TodoDetails} />
             <Route path="/DPdetails/:id" component={DPDetails} />
             <Route path="/usersessions/:id" component={MySessions} />
+            <Route path="/userdps/:id" component={MyDPs} />
             <Route path="/create" component={CreateTodo} />
             <Route path="/getTodos" component={LandingPage} />
             <Route path="/getDPs" component={DPPage} />
